@@ -1,4 +1,347 @@
-/* 768 tablet */
+/* =======================================================
+   RESPONSIVO VETALFA — DIVIDIDO POR BREAKPOINTS
+   ======================================================= */
+
+
+/* ======= MENU BASE ======= */
+
+.header-inner {
+    gap: 12px;
+    align-items: center;
+    position: relative;
+}
+
+.logo-group {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.site-title {
+    margin-left: 6px;
+    font-size: 1.25rem;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 6px;
+    color: var(--cor-principal);
+}
+
+.main-nav {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.main-nav a {
+    color: var(--cor-texto);
+    padding: 6px 8px;
+}
+
+.user-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+/* =======================================================
+   ≤ 768px (TABLET E CELULARES GRANDES)
+   ======================================================= */
+
 @media (max-width: 768px) {
-    
+    /* === HEADER E MENU === */
+    .menu-toggle {
+        display: block;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--cor-branco);
+        z-index: 9999;
+        transition: all 0.2s ease-in-out;
+    }
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--cor-branco);
+        border-top: 1px solid var(--cor-secundaria);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 9998;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+    }
+    .main-nav.open {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .main-nav a {
+        display: block;
+        text-align: center;
+        padding: 12px 10px;
+        border-bottom: 1px solid var(--cor-secundaria);
+        color: var(--cor-rodape);
+    }
+    .user-actions {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background: var(--cor-branco);
+        border-top: 1px solid var(--cor-secundaria);
+        padding: 10px;
+        z-index: 9998;
+    }
+    .user-actions.open {
+        display: flex;
+    }
+    /* === LAYOUT GERAL === */
+    body {
+        background-color: var(--cor-branco);
+        overflow-x: hidden;
+    }
+    main {
+        padding-top: 110px !important;
+        position: relative;
+        z-index: 1;
+    }
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    /* === HOME === */
+    .container.d-flex {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+    .caixa-texto {
+        width: 90%;
+    }
+    .container.d-flex img[alt="Cachorro"] {
+        width: 80%;
+        max-width: 400px;
+        margin: 15px 0;
+        order: 2;
+    }
+    .d-flex[style*="padding-top: 20px"] {
+        order: 3;
+        flex-direction: column;
+        gap: 12px !important;
+    }
+    /* === SOBRE === */
+    #sobre {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    #sobre img {
+        width: 80%;
+        max-width: 350px;
+        order: 2;
+    }
+    #sobre div {
+        width: 90% !important;
+        order: 1;
+    }
+    /* === SERVIÇOS === */
+    #servicos {
+        text-align: center;
+    }
+    .servicos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    .servicos div {
+        width: 45%;
+        max-width: 240px;
+        height: 250px;
+        background-size: cover;
+        background-position: center;
+    }
+    /* === CTA === */
+    .cta-container {
+        text-align: center;
+        padding: 40px 15px;
+    }
+    /* === DASHBOARD === */
+    .reminders {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 10px;
+    }
+    .reminder {
+        width: 100% !important;
+        max-width: 600px;
+        padding: 15px;
+    }
+    .pets {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .pet {
+        width: 100%;
+        max-width: 480px;
+        padding: 12px;
+    }
+    .reminder .d-flex.between {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    /* === FORMULÁRIOS === */
+    .formulario {
+        width: 95% !important;
+        padding: 20px 0;
+    }
+    .formulario form {
+        width: 100%;
+        gap: 10px;
+    }
+    .formulario form input,
+    .formulario form select,
+    .formulario form button,
+    .formulario form a {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    /* === FOOTER === */
+    footer .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    footer nav {
+        flex-direction: column;
+    }
+    footer .social-nav {
+        justify-content: center;
+    }
+    /* garante alinhamento vertical */
+    .formulario form {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    /* campos ocupam largura total */
+    .formulario form input {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+    /* botão de enviar */
+    .formulario form input[type="submit"] {
+        margin-top: 5px;
+        width: 100%;
+    }
+    /* link “crie agora” fica centralizado */
+    .formulario .d-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 6px;
+    }
+}
+
+
+/* =======================================================
+   ≤ 425px (CELULARES MÉDIOS)
+   ======================================================= */
+
+@media (max-width: 425px) {
+    main {
+        padding-top: 95px !important;
+    }
+    .titulo {
+        font-size: 1.6rem;
+    }
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+    .site-title {
+        font-size: 1.1rem;
+    }
+    .logo {
+        width: 42px;
+    }
+    .servicos div {
+        width: 80%;
+        max-width: 300px;
+        height: 240px;
+    }
+    .formulario form input {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+}
+
+
+/* =======================================================
+   ≤ 375px (CELULARES PEQUENOS)
+   ======================================================= */
+
+@media (max-width: 375px) {
+    main {
+        padding-top: 85px !important;
+    }
+    .titulo {
+        font-size: 1.4rem;
+    }
+    .btn {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+    .caixa-texto h2 {
+        font-size: 1.6rem;
+    }
+    .site-title {
+        font-size: 1rem;
+    }
+    .menu-toggle {
+        font-size: 1.5rem;
+    }
+}
+
+
+/* =======================================================
+   ≤ 320px (TELAS MINI)
+   ======================================================= */
+
+@media (max-width: 320px) {
+    main {
+        padding-top: 80px !important;
+    }
+    .titulo {
+        font-size: 1.25rem;
+    }
+    .btn {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+    .site-title {
+        font-size: 0.95rem;
+    }
+    .servicos div {
+        width: 100%;
+        max-width: 280px;
+        height: 200px;
+    }
 }

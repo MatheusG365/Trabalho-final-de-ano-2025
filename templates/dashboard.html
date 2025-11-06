@@ -1,8 +1,4 @@
-{% extends 'template.html' %}
-
-{% block title %}Dashboard de {{usuario.nome}}{% endblock %}
-
-{% block content %}
+{% extends 'template.html' %} {% block title %}Dashboard de {{usuario.nome}}{% endblock %} {% block content %}
 <div class="container d-flex column" style="margin-bottom: 100px;">
     <div class="subtitulo" style="margin-bottom: 50px;">
         Olá, <span style="font-weight: 700;">{{ usuario.nome }}</span>!
@@ -13,9 +9,7 @@
         <!-- Meus Pets -->
         <div class="reminder outline">
             <div><span class="destaque">Meus pets </span></div>
-            <a href="/cadastrar_pet">+ Adicionar pet</a>
-
-            {% if pets %}
+            <a href="/cadastrar_pet">+ Adicionar pet</a> {% if pets %}
             <div class="pets">
                 {% for pet in pets %}
                 <div class="pet border-radius">
@@ -54,9 +48,7 @@
         <!-- Consultas -->
         <div class="reminder outline">
             <div class="destaque">Consultas</div>
-            <a href="/agendar">+ Marcar consulta</a>
-
-            {% if consultas %}
+            <a href="/agendar">+ Marcar consulta</a> {% if consultas %}
             <div class="pets">
                 {% for consulta in consultas %}
                 <div class="pet border-radius">

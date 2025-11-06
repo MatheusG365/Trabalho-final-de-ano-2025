@@ -1,40 +1,43 @@
-{% extends 'template.html' %}
-
-{% block title %}Agendar serviço{% endblock %}
-
-{% block content %}
+{% extends 'template.html' %} {% block title %}Agendar Serviço{% endblock %} {% block content %}
 <div class="container d-flex between align" style="margin-bottom: 50px;">
     <section>
         <h2 class="titulo">Agende conosco</h2>
-        <p> Agende aqui conosco <br>
-            Por favor não colocar<br>
-            uma data antes da sua atual<br>
+        <p>
+            Agende aqui conosco <br> Por favor, não coloque uma data anterior à atual.
         </p>
     </section>
 
     <section class="container formulario section-padding" style="width: 50%;">
-        <form class="d-flex column" action="" method="POST">
-        <label for="pet_agendar">Escolha um pet para realizar um agendamento:</label>
-        <select name="pet_agendar" id="pet_agendar">
-            {% for pet in pets %}
-            <option value="{{pet.id}}">{{pet.nome}}</option>
-            {% endfor %}
-        </select>
-        <label for="tipo">Em que podemos ajudar:</label>
-        <select name="tipo" id="tipo">
-            {% if opcoes %}
-            {% for opcao in opcoes %}
-            <option value="{{opcao}}">{{opcao}}</option>
-            {% endfor %}
-            {% endif %}
-        </select>
-        <label for="datahora">Escolha a data e hora:</label>
-        <input type="datetime-local" id="datahora" name="datahora" required>
-        <label for="desc">Descreva suas necessidades:</label>
-        <input type="text" name="desc" id="desc">
-        <input class="btn btn-secundario" type="submit" value="Enviar">
-        <a class="btn btn-primary" style="color: var(--cor-branco);" href="/dashboard">Voltar</a>
-    </form>
+        <form class="d-flex column" action="{{ url_for('agendar') }}" method="POST">
+            <label for="pet_agendar">Escolha um pet para realizar o agendamento:</label>
+            <select name="pet_agendar" id="pet_agendar" required>
+        {% for pet in pets %}
+          <option value="{{ pet.id_pet }}">{{ pet.nome }}</option>
+        {% endfor %}
+      </select>
+
+            <label for="tipo">Em que podemos ajudar:</label>
+            <select name="tipo" id="tipo" required>
+        {% if opcoes %}
+          {% for opcao in opcoes %}
+            <option value="{{ opcao }}">{{ opcao }}</option>
+          {% endfor %}
+        {% else %}
+          <option disabled selected>Sem opções disponíveis</option>
+        {% endif %}
+      </select>
+
+            <label for="datahora">Escolha a data e hora:</label>
+            <input type="datetime-local" id="datahora" name="datahora" required>
+
+            <label for="desc">Descreva suas necessidades:</label>
+            <textarea name="desc" id="desc" rows="3"></textarea>
+
+            <div class="d-flex between" style="margin-top: 15px;">
+                <input class="btn btn-secundario" type="submit" value="Enviar">
+                <a class="btn btn-primary" href="{{ url_for('dashboard') }}" style="color: var(--cor-branco);">Voltar</a>
+            </div>
+        </form>
     </section>
 </div>
 {% endblock %}
