@@ -1,0 +1,35 @@
+{% extends 'template.html' %}
+
+{% block title %}Cadastro de pet{% endblock %}
+
+{% block content %}
+<div class="container d-flex align" style="height: 600px;">
+    <section class="container">
+        <h2 class="titulo">Faça o cadastro do seu pet</h2>
+        <p> Cadastre-se seu pet em nossa<br>
+            clínica <br>
+        </p>
+    </section>
+
+    <section class="container formulario section-padding">
+        <form class="d-flex column" action="" method="POST">
+            <!-- Formulário de cadastro (nome de usuario e senha) -->
+            <input type="text" placeholder="Nome" name="nome" id="" required>
+
+            <select name="raca" id="raca" required>
+                {% if especies %}
+                {% for especie in especies %}
+                <option value="{{especie}}">{{especie}}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+
+            <input type="number" placeholder="Idade" name="idade" required>
+            <input type="number" placeholder="Peso: (ex.: 200g)" name="peso" required>
+
+            <button class="btn btn-primary" type="submit" style="border: none;">Cadastrar</button>
+            <a class="btn btn-negativo" style="color: var(--cor-branco);" href="/dashboard">Cancelar</a>
+        </form>
+    </section>
+</div>
+{% endblock %}

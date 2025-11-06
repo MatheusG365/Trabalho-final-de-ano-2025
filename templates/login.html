@@ -1,0 +1,31 @@
+{% extends 'template.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container d-flex between align">
+    <section>
+        <h2 class="titulo"> Bem-vindo a VetAlfa</h2>
+        <p> Cadastre-se na nossa clínica <br>
+            e tenha acesso a <br>
+            agendamentos rápidos, <br>
+            dicas e cuidados especiais <br>
+            para seu pet!
+        </p>
+    </section>
+
+    <section class="formulario section-padding" style="margin-bottom: 100px;">
+        <h2 class="titulo">Login</h2>
+        <form class="d-flex between" action="" method="POST">
+            <input name="email" type="email" placeholder="E-mail" required>
+            <input name="senha" type="password" placeholder="Insira sua senha" minlength="8" required>
+            <input class="btn btn-secundario" type="submit">
+        </form>
+        
+        <div class="d-flex">
+            <p>Não possui uma conta?</p>
+            <a style="padding-left: 10px;" href="/cadastrar">Crie agora</a>
+        </div>
+    </section>
+</div>
+{% endblock %}

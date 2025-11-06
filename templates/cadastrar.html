@@ -1,0 +1,34 @@
+{% extends 'template.html' %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block content %}
+<div class="container d-flex between align" style="margin-bottom: 50px;">
+    <section>
+        <h2 class="titulo"> Bem-vindo a VetAlfa</h2>
+        <p> Cadastre-se na nossa clínica <br>
+            e tenha acesso a <br>
+            agendamentos rápidos, <br>
+            dicas e cuidados especiais <br>
+            para seu pet!
+        </p>
+    </section>
+
+    <section class="container formulario section-padding" style="width: 50%;">
+        <form class="d-flex column" action="" method="POST">
+            <!-- Formulário de cadastro (nome de usuario e senha) -->
+            <input type="text" placeholder="Insira seu Nome" name="nome" id="" required>
+
+            <input type="tel" placeholder="Insira seu número de telefone" name="tel" id="" maxlength="11" required>
+            <input type="email" placeholder="Insira seu email" name="email" id="" required>
+            <input type="text" placeholder="Insira seu CPF" name="cpf" id="" minlength="11" maxlength="11" pattern="\d{11}" required>
+
+            <input type="password" placeholder="Senha" name="senha" id="" minlength="8" required>
+            <input type="password" placeholder="Confirme sua senha" name="confirmarSenha" id="" minlength="8" required>
+            <!-- Enviar cadastro para o banco de dados -->
+            <button class="btn btn-secundario" type="submit" style="border: none;">Finalizar cadastro</button>
+            
+        </form>
+    </section>
+</div>
+{% endblock %}

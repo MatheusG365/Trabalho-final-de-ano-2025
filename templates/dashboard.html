@@ -1,0 +1,82 @@
+{% extends 'template.html' %}
+
+{% block title %}Dashboard de {{usuario.nome}}{% endblock %}
+
+{% block content %}
+<div class="container d-flex column" style="margin-bottom: 100px;">
+    <div class="subtitulo" style="margin-bottom: 50px;">
+        Olá, <span style="font-weight: 700;">{{ usuario.nome }}</span>!
+    </div>
+
+    <div class="reminders outline border-radius d-flex add-gap">
+
+        <!-- Meus Pets -->
+        <div class="reminder outline">
+            <div><span class="destaque">Meus pets </span></div>
+            <a href="/cadastrar_pet">+ Adicionar pet</a>
+
+            {% if pets %}
+            <div class="pets">
+                {% for pet in pets %}
+                <div class="pet border-radius">
+                    <div class="d-flex between">
+                        <a href="/editar_pet/{{pet[0]}}">Editar info</a>
+                        <a href="/remover_pet/{{pet[0]}}">Remover</a>
+                    </div>
+                    <p class="destaque" style="color: var(--cor-preto);">{{pet[1]}}</p>
+                    <p>{{pet[2]}}</p>
+
+                    <!-- Dose de medicamento -->
+                    <p class="destaque" style="color: var(--cor-preto);">Quantidade de medicamento</p>
+                    <div class="d-flex add-gap">
+                        {% if pet|length > 6 and pet[6] %}
+                        <p>{{pet[6]}} mg</p>
+                        {% endif %}
+                        <a href="/calcular_dose/{{pet[0]}}">Fazer cálculo</a>
+                    </div>
+
+                    <!-- Dose de soro -->
+                    <p class="destaque" style="color: var(--cor-preto);">Dose de soro</p>
+                    <div class="d-flex add-gap">
+                        {% if pet|length > 7 and pet[7] %}
+                        <p>{{pet[7]}} mL</p>
+                        {% endif %}
+                        <a href="/calcular_soro/{{pet[0]}}">Fazer cálculo</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div>Não há nenhum pet registrado</div>
+            {% endif %}
+        </div>
+
+        <!-- Consultas -->
+        <div class="reminder outline">
+            <div class="destaque">Consultas</div>
+            <a href="/agendar">+ Marcar consulta</a>
+
+            {% if consultas %}
+            <div class="pets">
+                {% for consulta in consultas %}
+                <div class="pet border-radius">
+                    <div class="d-flex between">
+                        <a href="/desmarcar/{{consulta[0]}}">Desmarcar</a>
+                        <a href="/editar_consulta/{{consulta[0]}}">Editar</a>
+                    </div>
+                    <p class="destaque" style="color: var(--cor-preto);">
+                        {{consulta[3]}} — Pet ID {{consulta[2]}}
+                    </p>
+                    <p>{{consulta[5].strftime('%d de %B de %Y, %H:%M')}}</p>
+                    <p>{{consulta[4]}}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div>Não há nenhuma consulta marcada</div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
