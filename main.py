@@ -17,9 +17,9 @@ app.secret_key = 'minha-chave-secreta'  # 🔒 troque por algo forte em produç�
 # Configuração do banco Firebird
 DB_CONFIG = {
     'host': 'localhost',
-    'database': r'C:\Users\mathe\OneDrive\Documentos\GitHub\Trabalho-final-de-ano-2025\BANCO.FDB',
+    'database': r'C:\Users\Aluno\Desktop\Trabalho-final-de-ano-2025\BANCO.FDB',
     'user': 'SYSDBA',
-    'password': 'masterkey'
+    'password': 'sysdba'
 }
 
 def get_conn():
@@ -109,13 +109,24 @@ def inserir_pet(nome, raca, peso, idade, dono_id):
     conn.commit()
     conn.close()
 
-def obter_consultas_usuario(id_pessoa):
+def obter_consultas_usuario(id_dono):
     conn = get_conn()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM CONSULTAS WHERE DONO_ID = ?", (id_pessoa,))
-    rows = cur.fetchall()
+    cur.execute("""
+        SELECT 
+            C.ID_CONSULTA,
+            C.TIPO,
+            C.DESCRICAO,
+            C.DATAHORA,
+            P.NOME AS PET_NOME
+        FROM CONSULTAS C
+        JOIN PETS P ON P.ID_PET = C.PET_ID
+        WHERE C.DONO_ID = ?
+        ORDER BY C.DATAHORA DESC
+    """, (id_dono,))
+    consultas = cur.fetchall()
     conn.close()
-    return rows
+    return consultas
 
 def inserir_consulta(dono_id, pet_id, tipo, descricao, datahora):
     conn = get_conn()
@@ -138,13 +149,19 @@ def inserir_prontuario(pet_id, dono_id, tipo, dose_rec=None, dose_res=None, desi
     conn.commit()
     conn.close()
 
-def obter_pet_por_id(id_pet):
+def obter_pets_usuario(id_dono):
     conn = get_conn()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM PETS WHERE ID_PET = ?", (id_pet,))
-    pet = cur.fetchone()
+    cur.execute("""
+        SELECT ID_PET, NOME, RACA, PESO, IDADE
+        FROM PETS
+        WHERE DONO_ID = ?
+    """, (id_dono,))
+    pets = cur.fetchall()
     conn.close()
-    return pet
+    return pets
+
+
 
 def obter_ultimo_prontuario(id_pet):
     conn = get_conn()
@@ -254,6 +271,7 @@ def dashboard():
     except Exception as e:
         flash(f'Erro ao carregar dashboard: {e}', 'error')
         return redirect(url_for('index'))
+
 
 
 @app.route('/cadastrar_pet', methods=['GET', 'POST'])
