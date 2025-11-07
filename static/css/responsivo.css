@@ -310,6 +310,7 @@
         padding: 8px;
     }
     .caixa-texto h2 {
+        margin-top: 1em;
         font-size: 1.6rem;
     }
     .site-title {
@@ -329,8 +330,13 @@
     main {
         padding-top: 80px !important;
     }
+    .flash-warning{
+        margin-top: 5em;
+    }
     .titulo {
         font-size: 1.25rem;
+        margin-top: 2.6em;
+
     }
     .btn {
         font-size: 0.8rem;

@@ -368,3 +368,30 @@ footer nav a:hover {
 .bottom-border {
     border: none
 }
+
+.home-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* para se adaptar bem em telas menores */
+    gap: 30px;
+    text-align: left;
+}
+
+.caixa-texto {
+    flex: 1;
+    min-width: 300px;
+}
+
+.img-cachorro {
+    width: 400px;
+    max-width: 100%;
+    height: auto;
+}
+
+.botoes-home {
+    justify-content: center;
+    margin-top: 40px;
+    gap: 20px;
+}
+
